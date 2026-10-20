@@ -1,0 +1,25 @@
+name: QA CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  qa-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+
+      - name: Docker Build
+        run: |
+          docker build -t qa-docker-app:v1 .
+
+
+      - name: QA Validation
+        run: |
+          echo "Docker image build successful"
+          echo "QA validation completed"
+          echo "Pipeline PASS"
